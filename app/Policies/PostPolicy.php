@@ -48,6 +48,11 @@ class PostPolicy
         return $this->update($user, $post);
     }
 
+    public function destroy(User $user, Post $post): bool
+    {
+        return $post->user()->is($user);
+    }
+
     /**
      * Determine whether the user can restore the model.
      */

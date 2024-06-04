@@ -16,8 +16,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/posts/show/{id}', [PostController::class, 'show'])->name('show');
     Route::get('/posts/create', [PostController::class, 'create'])->name('create');
     Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('edit');
-
-    //nuevo para categories
+    Route::get('/posts/papelera', [PostController::class, 'getPapelera'])->name('papelera');
+    Route::delete('/posts/papelera/{post}', [PostController::class, 'delete'])->name('posts.delete');
     Route::get('/categories', [CategoryController::class, 'index'])->name('indexCategory');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('createCategory');
     Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('editCategory');

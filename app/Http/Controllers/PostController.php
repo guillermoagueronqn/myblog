@@ -5,25 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\View\View;
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna la vista donde se muestran los posts, y en caso de que haya algo en el request pasado por parametro,
+     * solo se mostrarán los posts de la categoria correspondiente al request.
      */
-    // public function index(): View
-    // {
-    //     return view('posts\index', [
-    //         'posts' => Post::with('user')->latest()->get(),
-    //     ]);
-    // }
-
-    public function index(Request $request): View
-    {
+    public function index(Request $request) {
         if ($request->has('category_id')) {
             // La variable 'category_id' existe en la URL
             $categoryId = $request->input('category_id');
@@ -42,19 +33,18 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Retorna la vista donde estará el formulario para crear un nuevo post.
      */
-    public function create()
-    {
+    public function create() {
         $categories = Category::all();
         return view('posts\create', ['categories' => $categories]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Inserta un nuevo registro en la base de datos a partir del request pasado por parametro y luego redirige a la
+     * pagina '/posts'.
      */
-    public function store(Request $request): RedirectResponse
-    {
+    public function store(Request $request) {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string|max:255',
@@ -67,15 +57,18 @@ class PostController extends Controller
         return redirect(route('index', ['category_id' => $request->input('category_id')]));
     }
 
-    public function show($id)
-    { 
-        // return view('posts\show', ['post' => Post::findOrFail($post)]);
+    /**
+     * Retorna la vista show, obteniendo el post a partir del id pasado por parametro.
+     */
+    public function show($id) {
         $post = Post::findOrFail($id);
         return view('posts\show', compact('post'));
     }
 
-    public function edit($id)
-    {
+    /**
+     * Retorna la vista para editar posts, con las categorias para mostrar las opciones y el post a editar.
+     */
+    public function edit($id) {
         $post = Post::findOrFail($id);
         Gate::authorize('update', $post);
         $categories = Category::all();
@@ -83,10 +76,9 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza el post pasado por parametro a partir del request obtenido de un formulario.
      */
-    public function update(Request $request, Post $post): RedirectResponse
-    {
+    public function update(Request $request, Post $post) {
         Gate::authorize('update', $post);
 
         $validated = $request->validate([
@@ -102,26 +94,29 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deshabilita el post pasado por parametro y redirige a la pagina 'posts'.
      */
-    // public function destroy(Post $post): RedirectResponse
-    // {
-    //     Gate::authorize('delete', $post);
-
-    //     $post->delete();
-
-    //     return redirect(route('index'));
-    // }
-
-    // esta es la funcion para deshabilitar, no se muy bien como hacer el metodo a parte
-    // y que queden ambos, eliminar y deshabilitar, pero la logica está :)
-    public function destroy(Post $post): RedirectResponse
-    {
+    public function destroy(Post $post) {
         Gate::authorize('delete', $post);
 
         $post->update(['habilitated' => 0]);
 
         return redirect(route('index'));
     }
-}
 
+    /**
+     * Retorna a la vista papelera, pasando el arreglo de posts para luego mostrarlos
+     */
+    public function getPapelera() {
+        $posts = Post::all();
+        return view('posts\papelera', ['posts' => $posts]);
+    }
+
+    /**
+     * Elimina definitivamente el post pasado por parametro y redirige a la pagina 'papelera'
+     */
+    public function delete(Post $post) {
+        $post->delete();
+        return redirect(route('papelera'));
+    }
+}

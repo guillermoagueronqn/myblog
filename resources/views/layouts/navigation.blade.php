@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('indexCategory')" :active="request()->routeIs('indexCategory')">
                         {{ __('Categories') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('papelera')" :active="request()->routeIs('papelera')">
+                        {{ __('Papelera') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('indexCategory')" :active="request()->routeIs('indexCategory')">
                 {{ __('Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('papelera')" :active="request()->routeIs('papelera')">
+                {{ __('Papelera') }}
             </x-responsive-nav-link>
         </div>
 

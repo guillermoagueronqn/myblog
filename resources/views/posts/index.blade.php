@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mb-12 mx-auto p-4 sm:p-6 lg:p-8">
         @if ($category != null)
             <div class="p-3 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow xl:grid xl:grid-cols-3 xl:justify-items-center dark:border-gray-700 dark:bg-gray-800">
                 <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="http://localhost/myblog/resources/img/{{$category->url_imagen}}" alt="">

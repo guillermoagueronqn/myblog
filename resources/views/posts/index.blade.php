@@ -25,7 +25,7 @@
             </div>
         @else
             <h1>{{ __('Debes crear una categoría para crear un Post!')}}</h1>
-            <a href="{{ route('createCategory') }}" class="text-blue-500">{{ __('Crear categoría')}}</a>
+            <a href="{{ route('createCategory') }}" class="text-blue-500">{{ __('Create Category')}}</a>
         @endif        
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             @if (count($posts) > 0)

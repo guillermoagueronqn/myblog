@@ -19,8 +19,45 @@
                         {{ __('Categories') }}
                     </x-nav-link>
                     <x-nav-link :href="route('papelera')" :active="request()->routeIs('papelera')">
-                        {{ __('Papelera') }}
+                        {{ __('Paper Bin') }}
                     </x-nav-link>
+                    <label class="inline-flex items-center me-5 cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-slate-300 dark:peer-focus:ring-slate-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-slate-600"></div>
+                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Slate</span>
+                    </label>
+                    <div class="hidden sm:flex sm:items-center sm:ms-6">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                    <div>{{__("Language")}}</div>
+        
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+        
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('profile.edit')">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+        
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+        
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                 </div>
             </div>
 
@@ -80,7 +117,7 @@
                 {{ __('Categories') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('papelera')" :active="request()->routeIs('papelera')">
-                {{ __('Papelera') }}
+                {{ __('Paper Bin') }}
             </x-responsive-nav-link>
         </div>
 

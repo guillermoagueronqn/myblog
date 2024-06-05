@@ -94,21 +94,22 @@ class PostController extends Controller
     }
 
     /**
-     * Deshabilita el post pasado por parametro y redirige a la pagina 'posts'.
+     * Deshabilita o Habilita el post pasado por parametro y redirige a la pagina 'posts'.
      */
     public function destroy(Post $post) {
-        Gate::authorize('delete', $post);
-
-        $post->update(['habilitated' => 0]);
-
-        return redirect(route('index'));
+        if ($post->habilitated == 0){
+            $post->update(['habilitated' => 1]);    
+        } elseif ($post->habilitated == 1) {
+            $post->update(['habilitated' => 0]);
+        }
+        return back();
     }
 
     /**
      * Retorna a la vista papelera, pasando el arreglo de posts para luego mostrarlos
      */
     public function getPapelera() {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
         return view('posts\papelera', ['posts' => $posts]);
     }
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,6 @@ Route::resource('categories', CategoryController::class)
     ->only(['store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
+Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale');
 
 require __DIR__.'/auth.php';

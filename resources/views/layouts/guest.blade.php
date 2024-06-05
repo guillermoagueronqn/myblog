@@ -16,7 +16,31 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 relative">
+            <!-- Contenedor para los botones de idioma -->
+            <div class="absolute top-4 right-4">
+                <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            <div>{{ __("Language") }}</div>
+                            {{-- <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div> --}}
+                        </button>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-dropdown-link :href="route('locale', 'en')">
+                            {{ __('English') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('locale', 'es')">
+                            {{ __('Spanish') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                </x-dropdown>
+            </div>
+
             <div>
                 <a href="/">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

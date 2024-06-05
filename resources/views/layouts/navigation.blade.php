@@ -36,10 +36,10 @@
                             </x-slot>
         
                             <x-slot name="content">
-                                <x-dropdown-link>
+                                <x-dropdown-link :href="route('locale', 'en')">
                                     {{ __('English') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link>
+                                <x-dropdown-link :href="route('locale', 'es')">
                                     {{ __('Spanish') }}
                                 </x-dropdown-link>
                             </x-slot>
@@ -121,10 +121,10 @@
                 </x-slot>
 
                 <x-slot name="content">
-                    <x-dropdown-link>
+                    <x-dropdown-link :href="route('locale', 'en')">
                         {{ __('English') }}
                     </x-dropdown-link>
-                    <x-dropdown-link>
+                    <x-dropdown-link :href="route('locale', 'es')">
                         {{ __('Spanish') }}
                     </x-dropdown-link>
                 </x-slot>

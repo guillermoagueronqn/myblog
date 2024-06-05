@@ -1,3 +1,7 @@
+@section('title')
+    {{__('Create Category')}}
+@endSection
+
 <x-app-layout>
     <div class="max-w-7xl mb-12 mx-auto p-4 sm:p-6 lg:p-8">
         <div class="p-3 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow xl:grid xl:grid-cols-1 xl:justify-items-center dark:border-gray-700 dark:bg-gray-800">

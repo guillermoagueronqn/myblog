@@ -1,3 +1,7 @@
+@section('title')
+    {{__('Posts')}}
+@endSection
+
 <x-app-layout>
     <div class="max-w-7xl mb-12 mx-auto p-4 sm:p-6 lg:p-8">
         @if ($category != null)
@@ -24,8 +28,16 @@
                 </div>
             </div>
         @else
-            <h1>{{ __('Debes crear una categoría para crear un Post!')}}</h1>
-            <a href="{{ route('createCategory') }}" class="text-blue-500">{{ __('Create Category')}}</a>
+            <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                <div class="px-4 py-2">
+                    <h1>{{__('A category must exist to create a Post!')}}</h1>
+                </div>
+            </div>
+            <div class="flex items-center justify-end">
+                <div class="mt-6 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                    <a href="{{ route('createCategory') }}">{{ __('Create new Category') }}</a>
+                </div>
+            </div>
         @endif        
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             @if (count($posts) > 0)
@@ -131,8 +143,8 @@
                     @endif
                 @endforeach
             @else 
-                <div>
-                    <h1>No hay posts publicados por el momento!</h1>
+                <div class="px-4 py-2 mb-12">
+                    <h1>{{__('There are no posts published at the moment!')}}</h1>
                 </div>
             @endif
         </div>

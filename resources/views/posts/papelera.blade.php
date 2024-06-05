@@ -1,3 +1,7 @@
+@section('title')
+    {{__('Paper Bin')}}
+@endSection
+
 <x-app-layout>
     <div class="max-w-7xl mb-12 mx-auto p-4 sm:p-6 lg:p-8">
         <div class="p-3 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow xl:grid xl:grid-cols-1 xl:justify-items-center dark:border-gray-700 dark:bg-gray-800">
@@ -43,8 +47,8 @@
                     @endif
                 @endforeach
             @else 
-                <div>
-                    <h1>No hay posts en la papelera!</h1>
+                <div class="px-4 py-2 mb-12">
+                    <h1>{{__('There are no posts in the paper bin!')}}</h1>
                 </div>
             @endif
         </div>

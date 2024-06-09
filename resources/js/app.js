@@ -6,7 +6,7 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-// Set initial theme based on localStorage or system preference
+// Establece el tema inicial basado en el localStorage o la preferencia del sistema.
 function setInitialTheme() {
     if (localStorage.dark == 1 || (!('dark' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         localStorage.dark = 1;
@@ -23,7 +23,7 @@ function setInitialTheme() {
     }
 }
 
-// Toggle theme function
+// Función para cambiar el tema según el que esté seleccionado y actualizar los botones.
 function toggleTheme() {
     if (localStorage.dark == 1) {
         localStorage.dark = 0;
@@ -33,17 +33,17 @@ function toggleTheme() {
         document.documentElement.classList.add('dark');
     }
 
-    // Sync the state of both switches
+    // Actualiza el estado de ambos botones (responsive y no responsive).
     const mainToggle = document.getElementById('theme-toggle');
     const responsiveToggle = document.getElementById('theme-toggle-responsive');
     if (mainToggle) mainToggle.checked = localStorage.dark == 1;
     if (responsiveToggle) responsiveToggle.checked = localStorage.dark == 1;
 }
 
-// Set the initial theme when the page loads
+// Se llama a la función para establecer el tema inicial cuando la página se carga.
 setInitialTheme();
 
-// Add event listeners to both switches
+// Se añaden event listeners al botón responsive y al no responsive.
 document.getElementById('theme-toggle').addEventListener('change', toggleTheme);
 const responsiveToggle = document.getElementById('theme-toggle-responsive');
 if (responsiveToggle) responsiveToggle.addEventListener('change', toggleTheme);

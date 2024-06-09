@@ -4,93 +4,59 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna la vista donde se muestran las categorias para ser editadas.
      */
-    public function index()
-    {
+    public function index() {
         $categories = Category::get();
         return view('categories\index', ['categories' => $categories]);
     }
 
     /** 
-     * Show the form for creating a new resource.
+     * Retorna la vista donde se encuenta el formulario para crear una nueva categoría.
      */
-    public function create()
-    {
+    public function create() {
         return view('categories\create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crea una categoría en la base de datos a partir del formulario enviado por el usuario.
      */
-    /**public function store(Request $request): RedirectResponse
-    {
+    public function store(Request $request) {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
             'url_imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        Category::create($validated);
-
-        return redirect(route('indexCategory'));
-    }*/
-
-
-    public function store(Request $request): RedirectResponse
-    {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:255',
-            'url_imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         if ($request->hasFile('url_imagen')) {
             $file = $request->file('url_imagen');
             $filename = $request->nombre . '.' . $file->getClientOriginalExtension();
-            //$filePath = 'img/' . $filename;
-
             // Mueve la imagen a la carpeta resources/img
             $file->move(resource_path('img'), $filename);
-
             // Guarda la URL de la imagen en la base de datos
             $validated['url_imagen'] = $filename;
         }
-        //dd($validated);
         Category::create($validated);
-
         return redirect(route('indexCategory'));
     }
 
     /**
-     * Display the specified resource.
+     * Retorna la vista donde se encuentra el formulario para editar una categoría.
      */
-    /**public function show(Category $category)
-    {
-        //
-    }*/
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
+    public function edit($id) {
         $category = Category::findOrFail($id);
         return view('categories\edit', compact('category'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la categoría pasada por parámetro y luego redirige al usuario a la página donde se encuentran todas 
+     * las categorías.
      */
-    public function update(Request $request, Category $category)
-    {
+    public function update(Request $request, Category $category) {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
@@ -101,7 +67,6 @@ class CategoryController extends Controller
             if ($category->url_imagen && file_exists(resource_path('img/' . $category->url_imagen))) {
                 unlink(resource_path('img/' . $category->url_imagen));
             }
-            
             // Guarda la nueva imagen
             $file = $request->file('url_imagen');
             $filename = $request->nombre . '.' . $file->getClientOriginalExtension();
@@ -114,15 +79,6 @@ class CategoryController extends Controller
             $validated['url_imagen'] = $category->url_imagen;
         }
         $category->update($validated);
-
         return redirect(route('indexCategory'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    /**public function destroy(Category $category)
-    {
-        //
-    }*/
 }

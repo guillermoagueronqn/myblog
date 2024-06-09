@@ -51,8 +51,12 @@
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
                                         <div>
-                                            <span class="text-gray-800">{{ $post->user->name }}</span>
-                                            <small class="ml-2 text-sm text-gray-600">{{ $post->created_at->format('j M Y, g:i a') }}</small>
+                                            <span class="text-gray-800">{{ $post->user->name }} </span>
+                                            <small class="text-sm ml-1 text-gray-600">{{__('-')}}</small>
+                                            <small class="text-sm ml-1 text-gray-600">{{__('Category')}}</small>
+                                            <span class="text-sm text-gray-600">: {{ $post->category->nombre }}</span>
+                                            <span class="text-sm ml-1 text-gray-600">-</span>
+                                            <small class="text-sm ml-1 text-gray-600">{{ $post->created_at->format('j M Y, g:i a') }}</small>
                                             @unless ($post->created_at->eq($post->updated_at))
                                                 <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                                             @endunless
@@ -100,8 +104,12 @@
                             <div class="flex-1">
                                 <div class="flex justify-between items-center">
                                     <div>
-                                        <span class="text-gray-800">{{ $post->user->name }}</span>
-                                        <small class="ml-2 text-sm text-gray-600">{{ $post->created_at->format('j M Y, g:i a') }}</small>
+                                        <span class="text-gray-800">{{ $post->user->name }} </span>
+                                        <small class="text-sm ml-1 text-gray-600">{{__('-')}}</small>
+                                        <small class="text-sm ml-1 text-gray-600">{{__('Category')}}</small>
+                                        <span class="text-sm text-gray-600">: {{ $post->category->nombre }}</span>
+                                        <span class="text-sm ml-1 text-gray-600">-</span>
+                                        <small class="text-sm ml-1 text-gray-600">{{ $post->created_at->format('j M Y, g:i a') }}</small>
                                         @unless ($post->created_at->eq($post->updated_at))
                                             <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                                         @endunless

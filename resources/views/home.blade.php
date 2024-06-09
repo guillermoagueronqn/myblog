@@ -24,7 +24,6 @@
                         <h1>No hay categorias disponibles por el momento!</h1>
                     @endif
                 </div>
-                
             </div>
         </div>
     </div>

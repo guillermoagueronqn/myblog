@@ -28,9 +28,9 @@
 4. Instalar [Composer](https://getcomposer.org/)  
 5. Abrir Panel de XAMPP e iniciar el módulo Apache y MySQL, dándole en el botón Start en ambos  
 6. Crear base de datos MySQL con nombre `myblog`  
-7. Ejecutar el comando `php artisan migrate:fresh`, para crear las tablas necesarias para el proyecto en la base de datos    
+7. Ejecutar el comando `composer install`, para instalar las dependencias necesarias de Composer  
 8. Ejecutar el comando `npm install`, para instalar las dependencias necesarias de Node.js  
-9. Ejecutar el comando `composer install`, para instalar las dependencias necesarias de Composer  
+9. Ejecutar el comando `php artisan migrate:fresh`, para crear las tablas necesarias para el proyecto en la base de datos    
 10. Ejecutar el comando `npm run dev`, que gestiona los script de Node.js, compilando el código e iniciando un servidor de desarrollo  
 11. Abrir una nueva terminal y ejecutar el comando `php artisan serve`, que inicia el servidor de desarrollo de Laravel  
 12. Abrir el proyecto en un navegador desde la dirección [localhost:8000](http://localhost:8000/)

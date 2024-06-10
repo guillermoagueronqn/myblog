@@ -21,7 +21,7 @@
                             @endforeach
                         </div>
                     @else
-                        <h1>No hay categorias disponibles por el momento!</h1>
+                        <h1>{{__('There are no categories created!')}}</h1>
                     @endif
                 </div>
             </div>
